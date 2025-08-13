@@ -12,8 +12,7 @@ Ejecutando las pruebas ⚙️ --Se debe correr el comando Gradle clean test aggr
 
 Construido con 🛠️ ---> Se utilizan las dependencias de Serenity core ---> Serenity con Junit, Serenity con Cucumber ----> Serenity Screenplay y Serenity WebDriver con la ultima version 2.0.91 --->Webdriver: 139.0.7258.67 ---> Navegador utilizado: Chome Versión 139.0.7258.67 (Build oficial) (64 bits)
 
-Comandos:
-pasos para crear proyecto java con gradle desde consola:
+Comandos para proyecto java con gradle desde consola:
 -
 * ir hacia ruta de proyecto
 * desde ubicación de proyecto ir a la consola cmd 
