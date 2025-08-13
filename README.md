@@ -35,5 +35,6 @@ en el explorador de archivos
 con esto se ejecuta la prueba y se genera reporte
 en la siguiente ubicación:
 C:\ubicacion_equipo\carpeta_proyecto\target\site\serenity
+* seleccionar index.html
 
 Autor ✒️ Carolina Muñoz
