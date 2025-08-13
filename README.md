@@ -10,6 +10,6 @@ Instalación 🔧 --Configurar las variables de entorno de JAVA (jdk y jre) en l
 
 Ejecutando las pruebas ⚙️ --Se debe correr el comando Gradle clean test aggregate para ejecutar la prueba automatizada --Gradle: especifca que vamos a utilizar gradle --clean: Limpia la prueba para generar una nueva -- test: corre la automatizacion --aggregate: Genera el reporte de las pruebas con Serenity Report
 
-Construido con 🛠️ ---> Se utilizan las dependencias de Serenity core ---> Serenity con Junit, Serenity con Cucumber ----> Serenity Screenplay y Serenity WebDriver con la ultima version 2.0.91 --->Webdriver: 139.0.7258.67 ---> Navegador utilizado: Chome Versión 139.0.7258.67 (Build oficial) (32 bits)
+Construido con 🛠️ ---> Se utilizan las dependencias de Serenity core ---> Serenity con Junit, Serenity con Cucumber ----> Serenity Screenplay y Serenity WebDriver con la ultima version 2.0.91 --->Webdriver: 139.0.7258.67 ---> Navegador utilizado: Chome Versión 139.0.7258.67 (Build oficial) (64 bits)
 
 Autor ✒️ Carolina Muñoz
