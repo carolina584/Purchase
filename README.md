@@ -16,7 +16,7 @@ Comandos:
 pasos para crear proyecto java con gradle desde consola:
 -
 * ir hacia ruta de proyecto
-* desde la ubicación de tu proyecto ir a la consola cmd 
+* desde ubicación de proyecto ir a la consola cmd 
 * ingresar gradle init
 * seleccionar opción 6
 * seleccionar opción 1 y enter
