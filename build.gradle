@@ -1,0 +1,46 @@
+repositories {
+    mavenLocal()
+    mavenCentral() // ¡Ponlo aquí, de primero!
+    jcenter()
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        // Se revierte la versión del plugin a una compatible con Java 8
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.48")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+def serenityVersion = '2.0.91' // Versión actualizada pero compatible con Java 8
+
+dependencies {
+    // --- Dependencias de prueba (testImplementation) ---
+    testImplementation "net.serenity-bdd:serenity-core:$serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-junit:$serenityVersion"
+    testImplementation('junit:junit:4.13.2') // Última versión de JUnit 4
+    testImplementation('org.assertj:assertj-core:3.24.2')
+    testImplementation('org.slf4j:slf4j-simple:1.7.36') // Versión compatible con Java 8
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
+
+    // --- Dependencias de implementación (implementation) ---
+    implementation 'com.google.guava:guava:28.2-jre' // Versión compatible con Java 8
+    implementation "net.serenity-bdd:serenity-core:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-junit:$serenityVersion"
+    implementation 'net.serenity-bdd:serenity-cucumber:1.9.51' // Última versión de Cucumber 1.x
+    implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
+    implementation 'org.apache.commons:commons-lang3:3.12.0' // Versión compatible con Java 8
+}
+
+gradle.startParameter.continueOnFailure = true
+

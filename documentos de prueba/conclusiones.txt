@@ -1,0 +1,39 @@
+Título: Conclusiones del ejercicio de automatización E2E
+
+1. Metodología y enfoque adoptados
+
+Se implementó una prueba funcional automatizada de tipo E2E (punta a punta) para verificar el flujo de compra como invitado.
+
+Se utilizó Serenity BDD, aplicando el patrón de diseño Screenplay, que separa las acciones del actor de la lógica de la página, haciendo el código más legible y mantenible.
+
+2. Hallazgos durante la implementación
+
+Se identificaron los elementos clave del flujo de compra (botones, campos de texto, etc.) y se representaron como Targets.
+
+Hubo desafíos al momento de interactuar con algunos elementos que no estaban visibles o habilitados al instante, lo que requirió el uso de esperas explícitas como WaitUntil.the(...) para asegurar la sincronización de la prueba.
+
+La modularidad del patrón Screenplay facilitó la creación de tareas reutilizables, como "navegar al carrito" o "rellenar los datos de envío".
+
+3. Resultados de la prueba funcional
+
+La prueba fue exitosa, validando que el flujo de compra como invitado en http://opencart.abstracta.us/ funciona correctamente desde la selección de productos hasta la confirmación final.
+
+La confirmación de la compra ("Your order has been placed!") se validó con éxito, demostrando que la transacción se procesó de forma correcta.
+
+4. Valor agregado del uso de Serenity BDD
+
+Serenity BDD generó reportes detallados y legibles que explican cada paso de la ejecución. Estos reportes incluyen capturas de pantalla, lo que facilita la depuración de la prueba en caso de fallos.
+
+La estructura de Screenplay (Actors, Tasks, Questions) permite que la prueba se lea casi como una historia, lo que mejora la colaboración con equipos no técnicos.
+
+5. Oportunidades de mejora y pasos futuros
+
+Se podría ampliar la cobertura de pruebas para incluir otros escenarios, como:
+
+Flujo de compra con un usuario registrado.
+
+Pruebas de borde, como intentar comprar con un producto sin stock.
+
+Validación de los campos de formulario con datos inválidos.
+
+Se podría configurar la integración continua (CI) para ejecutar las pruebas automáticamente con cada cambio en el código, asegurando la calidad del software de forma continua.
