@@ -1,10 +1,10 @@
 package co.purchase.qa.interactions;
 
+import net.serenitybdd.annotations.Step;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.targets.Target;
-import net.thucydides.core.annotations.Step;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class ScrollElement implements Interaction {

@@ -1,44 +1,75 @@
-repositories {
-    mavenLocal()
-    mavenCentral() 
-    jcenter()
-}
-
 buildscript {
     repositories {
         mavenLocal()
-        jcenter()
         mavenCentral()
+        gradlePluginPortal()
+    }
+    ext {
+        serenityVersion        = '4.0.22'
+        cucumberVersion        = '7.14.0'
+        poiVersion             = '5.2.5'
+        webdrivermanagerVersion = '5.6.3'
+        healeniumVersion       = '3.4.3'
     }
     dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.48")
+        classpath("net.serenity-bdd:serenity-gradle-plugin:3.9.8")
+        classpath("net.serenity-bdd:serenity-single-page-report:3.9.8")
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'net.serenity-bdd.aggregator'
-
-def serenityVersion = '2.0.91' 
-
-dependencies {
-    
-    testImplementation "net.serenity-bdd:serenity-core:$serenityVersion"
-    testImplementation "net.serenity-bdd:serenity-junit:$serenityVersion"
-    testImplementation('junit:junit:4.13.2') // Última versión de JUnit 4
-    testImplementation('org.assertj:assertj-core:3.24.2')
-    testImplementation('org.slf4j:slf4j-simple:1.7.36') // Versión compatible con Java 8
-    testImplementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
-
-    implementation 'com.google.guava:guava:28.2-jre' // Versión compatible con Java 8
-    implementation "net.serenity-bdd:serenity-core:$serenityVersion"
-    implementation "net.serenity-bdd:serenity-junit:$serenityVersion"
-    implementation 'net.serenity-bdd:serenity-cucumber:1.9.51' // Última versión de Cucumber 1.x
-    implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
-    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
-    implementation 'org.apache.commons:commons-lang3:3.12.0' // Versión compatible con Java 8
+plugins {
+    id 'java'
 }
 
-gradle.startParameter.continueOnFailure = true
+apply plugin: 'net.serenity-bdd.serenity-gradle-plugin'
 
+group = 'co.purchase.qa'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+serenity {
+    reports = ["single-page-html"]
+}
+
+dependencies {
+    // Serenity BDD
+    implementation "net.serenity-bdd:serenity-core:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-cucumber:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-ensure:${serenityVersion}"
+
+    // Cucumber
+    implementation "io.cucumber:cucumber-java:${cucumberVersion}"
+
+    // JUnit (requerido por CucumberWithSerenity)
+    testImplementation 'junit:junit:4.13.2'
+
+    // Assertions
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+
+    // WebDriver Manager
+    implementation "io.github.bonigarcia:webdrivermanager:${webdrivermanagerVersion}"
+
+    // Healenium
+    implementation "com.epam.healenium:healenium-web:${healeniumVersion}"
+
+    // Apache POI (Excel)
+    implementation "org.apache.poi:poi:${poiVersion}"
+    implementation "org.apache.poi:poi-ooxml:${poiVersion}"
+
+    // Logback (único logger permitido)
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
+}
+
+tasks.withType(Test).configureEach {
+    gradle.startParameter.continueOnFailure = true
+    test.finalizedBy(aggregate)
+}

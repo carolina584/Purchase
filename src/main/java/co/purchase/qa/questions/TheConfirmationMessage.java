@@ -4,12 +4,14 @@ import co.purchase.qa.usersinterfaces.CheckoutPage;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.questions.Text;
+
 public class TheConfirmationMessage implements Question<String> {
 
     @Override
     public String answeredBy(Actor actor) {
-        return Text.of(CheckoutPage.TITLE_ORDER).viewedBy(actor).asString();
+        return Text.of(CheckoutPage.TITLE_ORDER).answeredBy(actor);
     }
+
     public static Question<String> value() {
         return new TheConfirmationMessage();
     }

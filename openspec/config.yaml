@@ -1,0 +1,19 @@
+schema: spec-driven
+
+context: |
+  Proyecto de automatización QA E2E con Serenity BDD 4.0.22 + Cucumber 7.14.0 + Screenplay Pattern, Java 11, Gradle 8.14.
+  Contexto técnico completo (datos del proyecto, stack, estructura, plantillas de código): openspec/project.md
+  Reglas del agente (roles, proceso, prohibiciones, checklist): openspec/AGENTS.md
+  Lee ambos archivos antes de crear cualquier artefacto.
+
+rules:
+  proposal:
+    - Listar los casos de prueba incluidos por ID (TC-[MODULO]-[NNN]) y lo que queda fuera de alcance
+  specs:
+    - Cada caso de prueba se expresa como un Scenario declarativo de negocio (Dado/Cuando/Entonces)
+  design:
+    - Detallar Tasks, Questions, Pages, Models y pasos Gherkin nuevos, respetando la separación de capas
+    - Confirmar que ningún texto de paso Gherkin se repite en otro StepDefinition
+  tasks:
+    - Seguir el orden de generación de AGENTS.md (sección 6)
+    - Incluir como última tarea ejecutar gradlew.bat clean test y verificar el checklist de AGENTS.md

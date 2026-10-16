@@ -4,11 +4,11 @@ import co.purchase.qa.exceptions.ExceptionProduct;
 import co.purchase.qa.usersinterfaces.DetailProductPage;
 import co.purchase.qa.usersinterfaces.HomePage;
 import co.purchase.qa.usersinterfaces.ListProductPage;
+import net.serenitybdd.annotations.Step;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.Keys;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 

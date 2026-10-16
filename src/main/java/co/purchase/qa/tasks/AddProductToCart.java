@@ -4,11 +4,11 @@ import co.purchase.qa.exceptions.ExceptionProduct;
 import co.purchase.qa.interactions.ScrollElement;
 import co.purchase.qa.usersinterfaces.DetailProductPage;
 import co.purchase.qa.usersinterfaces.ShoppingCartPage;
+import net.serenitybdd.annotations.Step;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.DoubleClick;
-import net.thucydides.core.annotations.Step;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class AddProductToCart implements Task {

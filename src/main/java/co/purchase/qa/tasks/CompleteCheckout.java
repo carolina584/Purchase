@@ -2,13 +2,13 @@ package co.purchase.qa.tasks;
 
 import co.purchase.qa.exceptions.ExceptionProduct;
 import co.purchase.qa.usersinterfaces.CheckoutPage;
+import net.serenitybdd.annotations.Step;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.SelectFromOptions;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.Keys;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;

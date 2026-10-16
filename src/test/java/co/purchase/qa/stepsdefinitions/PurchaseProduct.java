@@ -1,51 +1,54 @@
 package co.purchase.qa.stepsdefinitions;
 
+import co.purchase.qa.exceptions.ExceptionProduct;
 import co.purchase.qa.questions.TheConfirmationMessage;
 import co.purchase.qa.tasks.AddProductToCart;
 import co.purchase.qa.tasks.CompleteCheckout;
-import co.purchase.qa.tasks.GoTo;
 import co.purchase.qa.tasks.SearchForProduct;
-import co.purchase.qa.usersinterfaces.HomePage;
-import cucumber.api.java.Before;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
-import net.thucydides.core.annotations.Managed;
-import org.openqa.selenium.WebDriver;
+import co.purchase.qa.utils.Constants;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;
+import net.serenitybdd.screenplay.actions.Open;
+import net.serenitybdd.screenplay.actors.OnStage;
+import net.thucydides.model.util.EnvironmentVariables;
+import org.hamcrest.Matchers;
+
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
-import static org.hamcrest.core.IsEqual.equalTo;
 
 public class PurchaseProduct {
 
-    @Managed(driver= "chrome")
-    private WebDriver hisBrowser;
-
-    private Actor user = Actor.named("Carolina");
-    private HomePage page;
-
-    @Before
-    public void setUp() {
-        user.can(BrowseTheWeb.with(hisBrowser));
-    }
+    private EnvironmentVariables environmentVariables;
 
     @Given("user enters the application")
     public void userEntersTheApplication() {
-        user.wasAbleTo(GoTo.home());}
-
-    @When("^user searches (.*) and adds product to cart")
-    public void userSearchesMacBookAndAddsProductToCart(String productName) {
-        user.attemptsTo(SearchForProduct.named(productName),
-                AddProductToCart.inPage());}
-    @And("complete checkout as a guest")
-    public void completeCheckoutAsAGuest() {
-        user.attemptsTo(CompleteCheckout.asAGuest());
+        String url = EnvironmentSpecificConfiguration.from(environmentVariables)
+                .getProperty(Constants.ENV_DEFAULT);
+        OnStage.theActorInTheSpotlight().wasAbleTo(Open.url(url));
     }
 
-    @Then("It shows that your order has been placed (.*)")
+    @When("^user searches (.*) and adds product to cart$")
+    public void userSearchesAndAddsProductToCart(String productName) {
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                SearchForProduct.named(productName),
+                AddProductToCart.inPage()
+        );
+    }
+
+    @And("complete checkout as a guest")
+    public void completeCheckoutAsAGuest() {
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                CompleteCheckout.asAGuest()
+        );
+    }
+
+    @Then("^It shows that your order has been placed (.*)$")
     public void itShowsThatYourOrderHasBeenPlaced(String expectedMessage) {
-        user.should(seeThat(TheConfirmationMessage.value(), equalTo(expectedMessage)));
+        OnStage.theActorInTheSpotlight().should(
+                seeThat(TheConfirmationMessage.value(), Matchers.equalTo(expectedMessage))
+                        .orComplainWith(ExceptionProduct.class, Constants.MSG_ERROR_ORDER)
+        );
     }
 }
